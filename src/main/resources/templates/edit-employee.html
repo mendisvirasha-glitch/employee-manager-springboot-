@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back {
+            display: inline-block;
+            margin-left: 10px;
+            color: #1976d2;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Edit Employee</h1>
+
+    <form th:action="@{/employees/{id}/update(id=${employee.id})}"
+          th:object="${employee}" method="post">
+
+        <label>Full Name</label>
+        <input type="text" th:field="*{fullName}">
+        <p class="error" th:errors="*{fullName}"></p>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}">
+        <p class="error" th:errors="*{email}"></p>
+
+        <label>Phone Number</label>
+        <input type="text" th:field="*{phone}">
+        <p class="error" th:errors="*{phone}"></p>
+
+        <label>Department</label>
+        <input type="text" th:field="*{department}">
+        <p class="error" th:errors="*{department}"></p>
+
+        <label>Salary</label>
+        <input type="number" step="0.01" th:field="*{salary}">
+        <p class="error" th:errors="*{salary}"></p>
+
+        <br><br>
+
+        <button type="submit">Update Employee</button>
+
+        <a class="back" th:href="@{/employees}">Back</a>
+
+    </form>
+
+</div>
+
+</body>
+</html>
